@@ -1,0 +1,71 @@
+{
+  "name": "ski-mask",
+  "version": "1.0.3",
+  "description": "Schema validation tool for Snowplow Iglu JSON schemas.",
+  "main": "index.js",
+  "bin": "dist/commandLine.js",
+  "author": "@premjg",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ski-goggles/ski-mask"
+  },
+  "homepage": "https://github.com/ski-goggles/ski-mask",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/chai": "^4.0.5",
+    "@types/chai-as-promised": "^7.1.0",
+    "@types/commander": "^2.11.0",
+    "@types/jsen": "^0.0.19",
+    "@types/mocha": "^2.2.44",
+    "@types/ramda": "^0.25.6",
+    "@types/request-promise-native": "^1.0.10",
+    "@types/sinon": "^4.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "command-line-test": "^1.0.10",
+    "mocha": "^4.0.1",
+    "nock-vcr-recorder": "^0.1.5",
+    "nyc": "^11.3.0",
+    "sinon": "^4.1.2",
+    "source-map-support": "^0.5.0",
+    "syncy": "^2.2.2",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.1"
+  },
+  "dependencies": {
+    "@types/ajv": "^1.0.0",
+    "ajv": "^5.5.1",
+    "commander": "^2.12.2",
+    "fp-ts": "^0.6.4",
+    "jsome": "^2.3.26",
+    "ramda": "^0.25.0",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5"
+  },
+  "scripts": {
+    "test": "nyc mocha -r ts-node/register -r source-map-support/register 'src/**/*.test.ts' --timeout=10000",
+    "compile": "tsc && babel-node ./scripts/syncJsonFiles.js",
+    "release": "yarn compile && yarn test && yarn version && yarn publish"
+  },
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "exclude": [
+      "syncJsonFiles.js",
+      "**/*.d.ts",
+      "**/__test__/*",
+      "dist/**/*",
+      "coverage/**/*"
+    ],
+    "reporter": [
+      "html"
+    ],
+    "all": true
+  }
+}
