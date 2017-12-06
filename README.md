@@ -1,3 +1,5 @@
+[![NPM](https://nodei.co/npm/ski-mask.png)](https://npmjs.org/package/ski-mask)
+
 ## Ski Mask
 
 Schema validation tool for Snowplow Iglu JSON schemas.
@@ -9,7 +11,7 @@ Schema validation tool for Snowplow Iglu JSON schemas.
 1. Install `ski-mask`
 ```sh
 npm install ski-mask -g
-## Or
+# Or
 yarn global add ski-mask
 ```
 
