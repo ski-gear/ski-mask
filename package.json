@@ -1,6 +1,6 @@
 {
   "name": "ski-mask",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Schema validation tool for Snowplow Iglu JSON schemas.",
   "main": "dist/index.js",
   "bin": "dist/commandLine.js",
