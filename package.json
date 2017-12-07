@@ -3,6 +3,7 @@
   "version": "1.0.4",
   "description": "Schema validation tool for Snowplow Iglu JSON schemas.",
   "main": "dist/index.js",
+  "types": "src/index.ts",
   "bin": "dist/commandLine.js",
   "author": "@premjg",
   "repository": {
