@@ -1,4 +1,6 @@
-import { AnyJson } from "src/json";
+export type AnyJson =  boolean | number | string | null | JsonArray | JsonMap;
+interface JsonMap {  [key: string]: AnyJson; }
+interface JsonArray extends Array<AnyJson> {}
 
 export interface JsonMessage {
 	success: boolean;
@@ -6,7 +8,7 @@ export interface JsonMessage {
   context?: string;
 }
 
-export type IgluSchema = AnyJson & {
+export type IgluSchema = {
 	$schema: string;
 	description: string;
 	self: {
@@ -19,17 +21,7 @@ export type IgluSchema = AnyJson & {
 
 export type IgluJsonPayload = AnyJson & {
 	schema: string;
-	data: PayloadData;
-}
-
-export type PayloadData = {
-	schema: string;
-	data: {
-		schema: string,
-		data: {
-			[key: string]: any,
-		}
-	};
+	data: AnyJson;
 }
 
 export type IgluResolverSchema = IgluJsonPayload & {

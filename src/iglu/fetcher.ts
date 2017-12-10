@@ -8,7 +8,6 @@ import * as url from 'url';
 
 import { parseJson } from '../json';
 import { IgluJsonPayload, Repository, IgluResolverSchema, SchemaAddress, SchemaData, IgluSchema, JsonMessage } from '../types/Types';
-import { metaSchemaCheck } from './validator';
 
 type SchemaUrl = string;
 type RepoUrl = string;
@@ -23,9 +22,8 @@ export const fetchSchema = (igluSchemaUrl: string, resolverConfig: IgluResolverS
 };
 
 const parsedAndValidatedJsonFromFetched = (fetched: string): TaskEither<JsonMessage, IgluSchema> => {
-	const parsed = parseJson(fetched);
-	const validated = parsed.chain(metaSchemaCheck)
-	return fromEither(validated);
+	const parsed = parseJson(fetched).map(a => a as IgluSchema);
+	return fromEither(parsed);
 };
 
 const assembleSchemaUrl = curry((schemaAddress: SchemaAddress, endPoint: string): SchemaUrl => {
