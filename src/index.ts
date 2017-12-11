@@ -1,43 +1,45 @@
-import { validateIgluResolverSchema, validateIgluData } from './iglu/validator';
-import { liftA2 } from 'fp-ts/lib/Apply';
-import { flatten } from 'fp-ts/lib/Chain';
-import { curry, compose } from 'fp-ts/lib/function';
-import { fromEither, taskEither, of as teOf } from 'fp-ts/lib/TaskEither';
-import { PathLike } from 'fs';
+import { liftA2 } from "fp-ts/lib/Apply";
+import { flatten } from "fp-ts/lib/Chain";
+import { compose, curry } from "fp-ts/lib/function";
+import { fromEither, of as teOf, taskEither } from "fp-ts/lib/TaskEither";
+import { PathLike } from "fs";
 import { path } from "ramda";
+import { validateIgluData, validateIgluResolverSchema } from "./iglu/validator";
 
-import { readFile } from './file';
-import { fetchSchema } from './iglu/fetcher';
-import { parseJson, validateSchema } from './json';
-import { readResolverConfigFromFile } from './resolver';
-import { IgluResolverSchema, JsonMessage, AnyJson} from './types/Types';
-import { either } from 'fp-ts/lib/Either';
+import { either } from "fp-ts/lib/Either";
+import { readFile } from "./file";
+import { fetchSchema } from "./iglu/fetcher";
+import { parseJson, validateSchema } from "./json";
+import { readResolverConfigFromFile } from "./resolver";
+import { AnyJson, IgluResolverSchema, JsonMessage } from "./types/Types";
 
-export const validate = (json: AnyJson, resolverConfig: AnyJson): Promise<JsonMessage> => {
+export const validate = (
+  json: AnyJson,
+  resolverConfig: AnyJson,
+): Promise<JsonMessage> => {
   const validatedResolverConfig = validateIgluResolverSchema(resolverConfig);
-  const dataTask = teOf(json).mapLeft(_ => dummyJsonMessage)
-  const validatedPayloadJson = liftA2(taskEither)(curry(validateIgluData))(dataTask)(validatedResolverConfig)
+  const dataTask = teOf(json).mapLeft(_ => dummyJsonMessage);
+  const validatedPayloadJson = liftA2(taskEither)(curry(validateIgluData))(
+    dataTask,
+  )(validatedResolverConfig);
 
   return new Promise((resolve, reject) => {
-    flatten(taskEither)(validatedPayloadJson).run().then(
-      (e) => {
-        e.fold(
-          (error) => reject(error),
-          (_) => resolve(successMessage())
-        )
-      }
-    )
+    flatten(taskEither)(validatedPayloadJson)
+      .run()
+      .then(e => {
+        e.fold(error => reject(error), _ => resolve(successMessage()));
+      });
   });
 };
 
 const dummyJsonMessage: JsonMessage = {
-	success: false,
-	message: 'Dummy'
-}
+  message: "Dummy",
+  success: false,
+};
 
 const successMessage = (): JsonMessage => {
   return {
+    message: "All Valid",
     success: true,
-    message: 'All Valid'
-  }
-}
+  };
+};
