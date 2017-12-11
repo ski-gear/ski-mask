@@ -1,0 +1,25 @@
+{
+  "schema": "iglu:com.snowplowanalytics.iglu/resolver-config/jsonschema/1-0-0",
+  "data":
+  {
+    "cacheSize": 500,
+    "repositoreez":
+    [
+      {
+        "name": "Non existent Iglu repo",
+        "priority": 0,
+        "vendorPrefixes":
+        [
+          "org.awesome.snowplow"
+        ],
+        "connection":
+        {
+          "http":
+          {
+            "uri": "http://awesome-iglu.com"
+          }
+        }
+      }
+    ]
+  }
+}

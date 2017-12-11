@@ -2,7 +2,7 @@ import { liftA2 } from 'fp-ts/lib/Apply';
 import { Either, either, left, right } from 'fp-ts/lib/Either';
 import { compose, curry } from 'fp-ts/lib/function';
 import { fromEither, TaskEither, tryCatch } from 'fp-ts/lib/TaskEither';
-import { contains, find } from 'ramda';
+import { contains, find, pathOr } from 'ramda';
 import * as request from 'request-promise-native';
 import * as url from 'url';
 
@@ -58,9 +58,9 @@ const extractEndpoint = (resolverConfig: IgluResolverSchema, schemaAddress: Sche
 	const data = resolverConfig.data as SchemaData;
 	const repo = find(
 		(r: Repository): boolean => {
-			return contains(schemaAddress.vendor, r.vendorPrefixes);
+			return contains(schemaAddress.vendor, pathOr('', ['vendorPrefixes'], r));
 		},
-		data.repositories,
+		pathOr([], ['repositories'], data),
 	);
 
 	if (repo) {

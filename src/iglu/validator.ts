@@ -12,14 +12,18 @@ import { array } from 'fp-ts/lib/Array'
 import { flatten } from 'fp-ts/lib/Chain';
 
 const metaSchemaFile = require('./schemas/self-describing/schema/1-0-0.json');
-const resolverSchemaFile = require('./schemas/resolver/1-0-0.json');
+const metaResolverConfig = require('./metaIgluResolver.json');
 const payloadSchemaFile = require('./schemas/self-describing/instance/1-0-0.json');
 
 export const metaSchemaCheck = (json: AnyJson): Either<JsonMessage, IgluSchema> => {
 	return conformsToSchema(metaSchemaFile, json).map(a => a as IgluSchema) as Either<JsonMessage, IgluSchema>;
 };
 
-export const payloadSchemaCheck = (json: AnyJson, resolverConfig: IgluResolverSchema): TaskEither<JsonMessage, string> => {
+export const validateIgluResolverSchema = (json: AnyJson): TaskEither<JsonMessage, string> => {
+	return validateIgluData(json, metaResolverConfig)
+};
+
+export const validateIgluData = (json: AnyJson, resolverConfig: IgluResolverSchema): TaskEither<JsonMessage, string> => {
 	const checkableSchemas = reduceToListOfSchemas([], json);
 
 	const checks = map(
