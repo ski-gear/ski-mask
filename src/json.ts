@@ -13,9 +13,9 @@ export const parseJson = (json: string): Either<JsonMessage, AnyJson> => {
     return right(JSON.parse(json));
   } catch (e) {
     return left({
-      success: false,
-      message: "JSON parse error.",
       context: `Could not parse: "${JSON.stringify(json)}"`,
+      message: "JSON parse error.",
+      success: false,
     });
   }
 };
@@ -27,29 +27,29 @@ export const validateSchema = (json: AnyJson, schema: AnyJson): Either<JsonMessa
     if (validate(json)) {
       return right(json);
     } else {
-      const error: JsonMessage = {
-        success: false,
-        message: `JSON schema validation failed for ${JSON.stringify(json)}`,
+      const errorMessage: JsonMessage = {
         context: getErrorMessages(validate.errors as ajv.ErrorObject[]),
+        message: `JSON schema validation failed for ${JSON.stringify(json)}`,
+        success: false,
       };
-      return left(error);
+      return left(errorMessage);
     }
   } catch (e) {
-    const error: JsonMessage = {
-      success: false,
-      message: `Not a valid JSON schema`,
+    const errorMessage: JsonMessage = {
       context:  JSON.stringify(schema),
+      message: `Not a valid JSON schema`,
+      success: false,
     };
-    return left(error);
+    return left(errorMessage);
   }
 };
 
 const getValidator = (): Ajv => {
   const v = new ajv(
     {
-      validateSchema: false,
-      unknownFormats: ["strict-uri"],
       errorDataPath: "property",
+      unknownFormats: ["strict-uri"],
+      validateSchema: false,
     },
   );
   v.addMetaSchema(require("ajv/lib/refs/json-schema-draft-04.json"), "draft4");
