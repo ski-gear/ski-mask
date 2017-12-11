@@ -102,11 +102,11 @@
     },
     "rawHeaders": [
       "x-amz-id-2",
-      "ovfNH+PeUyqF/sU5oyV8D+HnuQJvR5irtIfzGR93R5guPdIKpnYgaUSsv4p/Bw7YpVGJ5g/8f5w=",
+      "rFVrPrZGJ5BO6/qGlwcEdUYrMu3wrIrWj7JIOod9b2kimw/D6S3Wzbm5zzkld+M80C7RTQTlSeE=",
       "x-amz-request-id",
-      "EDB3A3C768746595",
+      "44C818254BD8065E",
       "Date",
-      "Mon, 11 Dec 2017 04:19:19 GMT",
+      "Mon, 11 Dec 2017 04:19:21 GMT",
       "Last-Modified",
       "Fri, 27 Oct 2017 11:23:44 GMT",
       "ETag",
@@ -115,116 +115,6 @@
       "binary/octet-stream",
       "Content-Length",
       "1728",
-      "Server",
-      "AmazonS3",
-      "Connection",
-      "close"
-    ]
-  },
-  {
-    "scope": "http://iglucentral.com:80",
-    "method": "GET",
-    "path": "/schemas/com.snowplowanalytics.snowplow/unstruct_event/jsonschema/1-0-0",
-    "body": "",
-    "status": 200,
-    "response": {
-      "$schema": "http://iglucentral.com/schemas/com.snowplowanalytics.self-desc/schema/jsonschema/1-0-0#",
-      "description": "Schema for a Snowplow unstructured event",
-      "self": {
-        "vendor": "com.snowplowanalytics.snowplow",
-        "name": "unstruct_event",
-        "format": "jsonschema",
-        "version": "1-0-0"
-      },
-      "type": "object",
-      "properties": {
-        "schema": {
-          "type": "string",
-          "pattern": "^iglu:[a-zA-Z0-9-_.]+/[a-zA-Z0-9-_]+/[a-zA-Z0-9-_]+/[0-9]+-[0-9]+-[0-9]+$"
-        },
-        "data": {}
-      },
-      "required": [
-        "schema",
-        "data"
-      ],
-      "additionalProperties": false
-    },
-    "rawHeaders": [
-      "x-amz-id-2",
-      "veoXKOwGjVc5QCrFK8MRzWR6IPVYrg/dfnCK0cvNW7hG3+CM9zWmJbVOQAX6LgGI/mpKXTG2IXY=",
-      "x-amz-request-id",
-      "450D5ABB1BFBCCF4",
-      "Date",
-      "Mon, 11 Dec 2017 04:19:19 GMT",
-      "Last-Modified",
-      "Fri, 27 Oct 2017 11:23:46 GMT",
-      "ETag",
-      "\"5a3ffaf20e5859c17e96ecaf56c31608\"",
-      "Content-Type",
-      "binary/octet-stream",
-      "Content-Length",
-      "556",
-      "Server",
-      "AmazonS3",
-      "Connection",
-      "close"
-    ]
-  },
-  {
-    "scope": "http://iglucentral.com:80",
-    "method": "GET",
-    "path": "/schemas/com.snowplowanalytics.snowplow/link_click/jsonschema/1-0-0",
-    "body": "",
-    "status": 200,
-    "response": {
-      "$schema": "http://iglucentral.com/schemas/com.snowplowanalytics.self-desc/schema/jsonschema/1-0-0#",
-      "description": "Schema for a link click event",
-      "self": {
-        "vendor": "com.snowplowanalytics.snowplow",
-        "name": "link_click",
-        "format": "jsonschema",
-        "version": "1-0-0"
-      },
-      "type": "object",
-      "properties": {
-        "elementId": {
-          "type": "string"
-        },
-        "elementClasses": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "elementTarget": {
-          "type": "string"
-        },
-        "targetUrl": {
-          "type": "string",
-          "minLength": 1
-        }
-      },
-      "required": [
-        "targetUrl"
-      ],
-      "additionalProperties": false
-    },
-    "rawHeaders": [
-      "x-amz-id-2",
-      "hh7NbE1eY7KelMepOlC6uMBfv8gDiN7w30IhK4CIe6Hu07ISNuWeBK19Y5K30CIt9IyM27mGQW4=",
-      "x-amz-request-id",
-      "7300FB9D33FBB80F",
-      "Date",
-      "Mon, 11 Dec 2017 04:19:19 GMT",
-      "Last-Modified",
-      "Fri, 27 Oct 2017 11:23:45 GMT",
-      "ETag",
-      "\"3e45eee8f2b33b7390fe89839130aac5\"",
-      "Content-Type",
-      "binary/octet-stream",
-      "Content-Length",
-      "623",
       "Server",
       "AmazonS3",
       "Connection",

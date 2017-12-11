@@ -6,7 +6,7 @@ import 'mocha';
 import * as path from 'path';
 import * as fs from 'fs';
 import { path as rPath, prop } from "ramda";
-import { AnyJson } from '../json';
+import { AnyJson } from '../types/Types';
 import * as vcr from 'nock-vcr-recorder';
 import { PathLike } from 'fs';
 import {  getJsonFromFile } from "./test.helpers";

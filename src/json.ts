@@ -1,16 +1,12 @@
 import { Either, left, right, traverse } from 'fp-ts/lib/Either';
 import { Task, task } from 'fp-ts/lib/Task';
-import { left as teLeft, right as teRight, TaskEither } from 'fp-ts/lib/TaskEither';
+import { TaskEither, fromEither } from 'fp-ts/lib/TaskEither';
 import {  Ajv } from "ajv";
 import * as ajv from 'ajv';
 import { map, propOr, join } from "ramda";
 
 import { error } from 'util';
-import { IgluSchema, JsonMessage } from './types/Types';
-
-export type AnyJson =  boolean | number | string | null | JsonArray | JsonMap;
-interface JsonMap {  [key: string]: AnyJson; }
-interface JsonArray extends Array<AnyJson> {}
+import { IgluSchema, JsonMessage, AnyJson } from './types/Types';
 
 export const parseJson = (json: string): Either<JsonMessage, AnyJson> => {
   try {
@@ -24,17 +20,25 @@ export const parseJson = (json: string): Either<JsonMessage, AnyJson> => {
   }
 };
 
-export const validateSchema = (json: AnyJson, schema: IgluSchema): Either<JsonMessage, AnyJson> => {
+export const validateSchema = (json: AnyJson, schema: AnyJson): Either<JsonMessage, AnyJson> => {
   const validator = getValidator();
-  const validate = validator.compile(schema);
-  const valid = validate(json);
-  if (valid) {
-    return right(json);
-  } else {
+  try {
+    const validate = validator.compile(schema as object);
+    if(validate(json)){
+      return right(json)
+    } else {
+      const error: JsonMessage = {
+        success: false,
+        message: `JSON schema validation failed for ${JSON.stringify(json)}`,
+        context: getErrorMessages(validate.errors as ajv.ErrorObject[])
+      };
+     return left(error)
+    }
+  } catch (e) {
     const error: JsonMessage = {
       success: false,
-      message: `JSON schema validation failed for ${JSON.stringify(json)}`,
-      context:  getErrorMessages(validate.errors as ajv.ErrorObject[])
+      message: `Not a valid JSON schema`,
+      context:  JSON.stringify(schema)
     };
     return left(error);
   }
@@ -56,7 +60,7 @@ const getErrorMessages = (errors: ajv.ErrorObject[]): string => {
   const messages = map(
     (e) => {
       const msg = propOr('No Error', 'message', e);
-      const dataPath = propOr('stuff', 'dataPath', e);
+      const dataPath = propOr('stuff', 'schemaPath', e);
       return join(': ', [msg, dataPath]);
     },
     errors

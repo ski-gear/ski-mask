@@ -1,9 +1,9 @@
-import { IgluJsonPayload, IgluSchema, JsonMessage } from '../types/Types';
+import { IgluJsonPayload, IgluSchema, JsonMessage, AnyJson } from '../types/Types';
 import { expect } from 'chai';
 import 'mocha';
 import * as path from 'path';
 import * as fs from 'fs';
-import { validateSchema, AnyJson, parseJson } from '../json'
+import { validateSchema, parseJson } from '../json'
 import { path as rPath } from "ramda";
 import { Either } from 'fp-ts/lib/Either';
 import { TaskEither } from 'fp-ts/lib/TaskEither';

@@ -2,13 +2,12 @@ import { liftA2 } from 'fp-ts/lib/Apply';
 import { Either, either, left, right } from 'fp-ts/lib/Either';
 import { compose, curry } from 'fp-ts/lib/function';
 import { fromEither, TaskEither, tryCatch } from 'fp-ts/lib/TaskEither';
-import { contains, find } from 'ramda';
+import { contains, find, pathOr } from 'ramda';
 import * as request from 'request-promise-native';
 import * as url from 'url';
 
 import { parseJson } from '../json';
 import { IgluJsonPayload, Repository, IgluResolverSchema, SchemaAddress, SchemaData, IgluSchema, JsonMessage } from '../types/Types';
-import { metaSchemaCheck } from './validator';
 
 type SchemaUrl = string;
 type RepoUrl = string;
@@ -23,9 +22,8 @@ export const fetchSchema = (igluSchemaUrl: string, resolverConfig: IgluResolverS
 };
 
 const parsedAndValidatedJsonFromFetched = (fetched: string): TaskEither<JsonMessage, IgluSchema> => {
-	const parsed = parseJson(fetched);
-	const validated = parsed.chain(metaSchemaCheck)
-	return fromEither(validated);
+	const parsed = parseJson(fetched).map(a => a as IgluSchema);
+	return fromEither(parsed);
 };
 
 const assembleSchemaUrl = curry((schemaAddress: SchemaAddress, endPoint: string): SchemaUrl => {
@@ -60,9 +58,9 @@ const extractEndpoint = (resolverConfig: IgluResolverSchema, schemaAddress: Sche
 	const data = resolverConfig.data as SchemaData;
 	const repo = find(
 		(r: Repository): boolean => {
-			return contains(schemaAddress.vendor, r.vendorPrefixes);
+			return contains(schemaAddress.vendor, pathOr('', ['vendorPrefixes'], r));
 		},
-		data.repositories,
+		pathOr([], ['repositories'], data),
 	);
 
 	if (repo) {

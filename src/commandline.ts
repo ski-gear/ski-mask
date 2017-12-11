@@ -50,7 +50,7 @@ const checkOption = (name: string, opt: string): Either<JsonMessage, string> => 
 	const error = {
 		success: false,
 		message: `Cannot continue without ${name}`
-	} 
+	}
 	return or(isEmpty(opt), isNil(opt)) ? left(error) : right(opt)
 }
 
