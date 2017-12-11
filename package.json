@@ -1,6 +1,6 @@
 {
   "name": "ski-mask",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Schema validation tool for Snowplow Iglu JSON schemas.",
   "main": "dist/index.js",
   "types": "src/index.ts",
@@ -49,14 +49,15 @@
   },
   "scripts": {
     "lint": "tslint -p . --fix",
-    "test":
-      "yarn lint && mocha -r ts-node/register -r source-map-support/register 'src/**/*.test.ts' --timeout=10000",
-    "compile":
-      "tsc && babel-node ./scripts/syncJsonFiles.js && chmod +x ./dist/commandLine.js",
+    "test": "yarn lint && mocha -r ts-node/register -r source-map-support/register 'src/**/*.test.ts' --timeout=10000",
+    "compile": "tsc && babel-node ./scripts/syncJsonFiles.js && chmod +x ./dist/commandLine.js",
     "release": "yarn compile && yarn test && yarn version && yarn publish"
   },
   "nyc": {
-    "extension": [".ts", ".tsx"],
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
     "exclude": [
       "syncJsonFiles.js",
       "**/*.d.ts",
@@ -64,7 +65,9 @@
       "dist/**/*",
       "coverage/**/*"
     ],
-    "reporter": ["html"],
+    "reporter": [
+      "html"
+    ],
     "all": true
   }
 }
