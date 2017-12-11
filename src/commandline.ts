@@ -14,44 +14,52 @@ import { validate } from "./index";
 import { parseJson } from "./json";
 
 const main = (): void => {
-	const version = require("../package.json").version;
-	commander
-	  .version(version)
-		.option("-d, --data-file [file]", "Path of the Data file")
-		.option("-r, --resolver-file [file]", "Path of the Resolver Config File")
-		.parse(process.argv);
+  const version = require("../package.json").version;
+  commander
+    .version(version)
+    .option("-d, --data-file [file]", "Path of the Data file")
+    .option("-r, --resolver-file [file]", "Path of the Resolver Config File")
+    .parse(process.argv);
 
-	const data = checkOption("Data File", commander.dataFile).chain(readFile).chain(parseJson);
-	const resolver = checkOption("Resolver Config File", commander.resolverFile).chain(readFile).chain(parseJson);
+  const data = checkOption("Data File", commander.dataFile)
+    .chain(readFile)
+    .chain(parseJson);
+  const resolver = checkOption("Resolver Config File", commander.resolverFile)
+    .chain(readFile)
+    .chain(parseJson);
 
-	const runner = liftA2(either)(curry(validate));
-	runner(data)(resolver).fold(
-		(e) => {
-			console.error(jsome.getColoredString(e));
-			process.exit(1);
-		},
-		(d) => {
-			d.then(
-				(s) => {
-					console.log(jsome.getColoredString(s));
-					process.exit(0);
-				},
-			).catch(
-				(e) => {
-					console.error(jsome.getColoredString(e));
-					process.exit(1);
-				},
-			);
-		},
-	);
+  const runner = liftA2(either)(curry(validate));
+  runner(data)(resolver).fold(
+    e => {
+      // tslint:disable-next-line:no-console
+      console.error(jsome.getColoredString(e));
+      process.exit(1);
+    },
+    d => {
+      d
+        .then(s => {
+          // tslint:disable-next-line:no-console
+          console.log(jsome.getColoredString(s));
+          process.exit(0);
+        })
+        .catch(e => {
+          // tslint:disable-next-line:no-console
+          console.error(jsome.getColoredString(e));
+          process.exit(1);
+        });
+    },
+  );
 };
 
-const checkOption = (name: string, opt: string): Either<JsonMessage, string> => {
-	const error = {
-		success: false,
-		message: `Cannot continue without ${name}`,
-	};
-	return or(isEmpty(opt), isNil(opt)) ? left(error) : right(opt);
+const checkOption = (
+  name: string,
+  opt: string,
+): Either<JsonMessage, string> => {
+  const error = {
+    message: `Cannot continue without ${name}`,
+    success: false,
+  };
+  return or(isEmpty(opt), isNil(opt)) ? left(error) : right(opt);
 };
 
 main();

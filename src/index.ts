@@ -11,33 +11,35 @@ import { readFile } from "./file";
 import { fetchSchema } from "./iglu/fetcher";
 import { parseJson, validateSchema } from "./json";
 import { readResolverConfigFromFile } from "./resolver";
-import { AnyJson, IgluResolverSchema, JsonMessage} from "./types/Types";
+import { AnyJson, IgluResolverSchema, JsonMessage } from "./types/Types";
 
-export const validate = (json: AnyJson, resolverConfig: AnyJson): Promise<JsonMessage> => {
+export const validate = (
+  json: AnyJson,
+  resolverConfig: AnyJson,
+): Promise<JsonMessage> => {
   const validatedResolverConfig = validateIgluResolverSchema(resolverConfig);
-  const dataTask = teOf(json).mapLeft((_) => dummyJsonMessage);
-  const validatedPayloadJson = liftA2(taskEither)(curry(validateIgluData))(dataTask)(validatedResolverConfig);
+  const dataTask = teOf(json).mapLeft(_ => dummyJsonMessage);
+  const validatedPayloadJson = liftA2(taskEither)(curry(validateIgluData))(
+    dataTask,
+  )(validatedResolverConfig);
 
   return new Promise((resolve, reject) => {
-    flatten(taskEither)(validatedPayloadJson).run().then(
-      (e) => {
-        e.fold(
-          (error) => reject(error),
-          (_) => resolve(successMessage()),
-        );
-      },
-    );
+    flatten(taskEither)(validatedPayloadJson)
+      .run()
+      .then(e => {
+        e.fold(error => reject(error), _ => resolve(successMessage()));
+      });
   });
 };
 
 const dummyJsonMessage: JsonMessage = {
-	success: false,
-	message: "Dummy",
+  message: "Dummy",
+  success: false,
 };
 
 const successMessage = (): JsonMessage => {
   return {
-    success: true,
     message: "All Valid",
+    success: true,
   };
 };

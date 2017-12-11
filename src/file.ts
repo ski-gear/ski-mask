@@ -8,9 +8,9 @@ export const readFile = (filePath: PathLike): Either<JsonMessage, string> => {
     return right(fs.readFileSync(filePath).toString());
   } catch (e) {
     return left({
-      success: false,
-      message: "Failed to read file.",
       context: e,
+      message: "Failed to read file.",
+      success: false,
     });
   }
 };
