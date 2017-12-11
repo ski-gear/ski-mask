@@ -1,0 +1,124 @@
+[
+  {
+    "scope": "http://iglucentral.com:80",
+    "method": "GET",
+    "path": "/schemas/com.snowplowanalytics.iglu/resolver-config/jsonschema/1-0-0",
+    "body": "",
+    "status": 200,
+    "response": {
+      "$schema": "http://iglucentral.com/schemas/com.snowplowanalytics.self-desc/schema/jsonschema/1-0-0#",
+      "description": "Schema for an Iglu resolver's configuration",
+      "self": {
+        "vendor": "com.snowplowanalytics.iglu",
+        "name": "resolver-config",
+        "format": "jsonschema",
+        "version": "1-0-0"
+      },
+      "type": "object",
+      "properties": {
+        "cacheSize": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "repositories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "priority": {
+                "type": "integer"
+              },
+              "vendorPrefixes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "connection": {
+                "type": "object",
+                "oneOf": [
+                  {
+                    "properties": {
+                      "embedded": {
+                        "type": "object",
+                        "properties": {
+                          "path": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "path"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "embedded"
+                    ],
+                    "additionalProperties": false
+                  },
+                  {
+                    "properties": {
+                      "http": {
+                        "type": "object",
+                        "properties": {
+                          "uri": {
+                            "type": "string",
+                            "format": "uri"
+                          }
+                        },
+                        "required": [
+                          "uri"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "required": [
+                      "http"
+                    ],
+                    "additionalProperties": false
+                  }
+                ]
+              }
+            },
+            "required": [
+              "name",
+              "priority",
+              "vendorPrefixes",
+              "connection"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "cacheSize",
+        "repositories"
+      ],
+      "additionalProperties": false
+    },
+    "rawHeaders": [
+      "x-amz-id-2",
+      "FMFsMyuPsjLaYqjD26YCQtnA1UkEPp10skeItjlfKhnCOg/wLNgvcMIPOR8BZ0E2hOeiUey1CXw=",
+      "x-amz-request-id",
+      "48FC93F60A88AD3D",
+      "Date",
+      "Mon, 11 Dec 2017 03:50:47 GMT",
+      "Last-Modified",
+      "Fri, 27 Oct 2017 11:23:44 GMT",
+      "ETag",
+      "\"b7707a33a664f362746c93c6eb3a20b2\"",
+      "Content-Type",
+      "binary/octet-stream",
+      "Content-Length",
+      "1728",
+      "Server",
+      "AmazonS3",
+      "Connection",
+      "close"
+    ]
+  }
+]
