@@ -90,13 +90,13 @@ describe("Iglu/Validator", () => {
   describe('validateIgluResolverSchema', () => {
     describe('with a valid resolver config', () => {
       it('returns a success', () => {
-        return vcr.useCassette('iglu-resolver', () => {
+        return vcr.useCassette('iglu-resolver', { writeOnFailure: false }, () => {
           const resolverConfig = require('./fixtures/resolver.json');
 
           return validateIgluResolverSchema(resolverConfig).run().then(
             (e) => e.fold(
               (e) => { throw new Error(`Should have passed the validation. Failed with ${JSON.stringify(e)}`) },
-              (d) => expect(d).to.match(/Valid Payload/)
+              (d) => expect(d.schema).to.match(/iglu\:com\.snowplowanalytics\.iglu\/resolver\-config\/jsonschema\/1\-0\-0/)
             )
           );
         });

@@ -2,6 +2,77 @@
   {
     "scope": "http://iglu.data.e2e.realestate.com.au:80",
     "method": "GET",
+    "path": "/schemas/au.com.realestate/user/jsonschema/1-0-0",
+    "body": "",
+    "status": 200,
+    "response": {
+      "$schema": "http://iglucentral.com/schemas/com.snowplowanalytics.self-desc/schema/jsonschema/1-0-0#",
+      "description": "Schema for user",
+      "self": {
+        "vendor": "au.com.realestate",
+        "name": "user",
+        "format": "jsonschema",
+        "version": "1-0-0"
+      },
+      "type": "object",
+      "properties": {
+        "user_login_status": {
+          "type": "string",
+          "description": "Whether a the user is logged in or not",
+          "enum": [
+            "logged in",
+            "logged_out",
+            "not logged in"
+          ]
+        },
+        "my_rea_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "ID for each visitor who is logged in on My Rea"
+        },
+        "my_rea_anon_id": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "ID for each visitor irrespective of whether they have a MyREA login"
+        },
+        "reauid": {
+          "type": "string",
+          "description": "New unique ID for all visitors"
+        }
+      },
+      "required": [
+        "user_login_status"
+      ],
+      "additionalProperties": false
+    },
+    "rawHeaders": [
+      "x-amz-id-2",
+      "opd20Uw0EXn5hRXVzDqg2NL4Gonko/MZF6a6XLnoWLmJDdofjA4bNLfwDU0s5qFVfkjmIj5sl/A=",
+      "x-amz-request-id",
+      "1A4CA97CD08017B0",
+      "Date",
+      "Mon, 11 Dec 2017 04:19:20 GMT",
+      "Last-Modified",
+      "Mon, 04 Dec 2017 06:48:53 GMT",
+      "ETag",
+      "\"592a291d696e472b7dd853697872b034\"",
+      "Content-Type",
+      "binary/octet-stream",
+      "Content-Length",
+      "950",
+      "Server",
+      "AmazonS3",
+      "Connection",
+      "close"
+    ]
+  },
+  {
+    "scope": "http://iglu.data.e2e.realestate.com.au:80",
+    "method": "GET",
     "path": "/schemas/au.com.realestate/property/jsonschema/2-0-0",
     "body": "",
     "status": 200,
@@ -70,11 +141,11 @@
     },
     "rawHeaders": [
       "x-amz-id-2",
-      "gHAk5/zYD6aMxvH3j7jfyVUac4jSLwxGw5qFK+mHGubmu0i1jBSi2Mwua4XH/+xyUNLWPWj/plw=",
+      "3Xe96QMgjzeLPEkGUxfO7ynC4SaXhouc8mCpCYYvfWgPmyUbBbukLWyA5bB5iTrM5dgEvw567Fw=",
       "x-amz-request-id",
-      "526AD9CCCE798D43",
+      "C85CDB78A29F7F37",
       "Date",
-      "Mon, 11 Dec 2017 03:50:47 GMT",
+      "Mon, 11 Dec 2017 04:19:20 GMT",
       "Last-Modified",
       "Mon, 04 Dec 2017 06:48:53 GMT",
       "ETag",
@@ -173,11 +244,11 @@
     },
     "rawHeaders": [
       "x-amz-id-2",
-      "uBUUEg4XQeyoV8kp++W94ZDjNLFzPbeenQ1kxChB5+W+8eJu6ZXQ3kUfpG8awlDsQWGRQ60TpP0=",
+      "Ndphz4raK5hd+i3+Z5Vjclju7quHhb5KOEV4EYCPcXEbhfq8O6Vp+id/u7lmNl+5bCqb/xJXEjg=",
       "x-amz-request-id",
-      "C34F316273666176",
+      "F14C8101D1ADBC04",
       "Date",
-      "Mon, 11 Dec 2017 03:50:47 GMT",
+      "Mon, 11 Dec 2017 04:19:20 GMT",
       "Last-Modified",
       "Mon, 04 Dec 2017 06:48:53 GMT",
       "ETag",
@@ -223,11 +294,11 @@
     },
     "rawHeaders": [
       "x-amz-id-2",
-      "Rgh26wrTvYH6LU5h7mNRenoEmBTvoaZ/0caec32D1guun6w0YIZdgXB+lmbMfscdCLY5f3RFBUE=",
+      "O1uGtoKN+WEZF3NYb0IgDkTS1XS93y61gknJebL6hIw0JlzcNdL6Pf7KJWcq5/nIOkidm7vAt4M=",
       "x-amz-request-id",
-      "0C8997D4BF8FA233",
+      "C93A070A75E87E62",
       "Date",
-      "Mon, 11 Dec 2017 03:50:47 GMT",
+      "Mon, 11 Dec 2017 04:19:20 GMT",
       "Last-Modified",
       "Mon, 04 Dec 2017 06:48:53 GMT",
       "ETag",
@@ -302,11 +373,11 @@
     },
     "rawHeaders": [
       "x-amz-id-2",
-      "/UvY//l7cS2YInI10aG+1YUZWsXcUesgdyT1tAbc7cFwJ+gyxT70mrFw6TUviEphGf2JxByLtLk=",
+      "ZbAAKanYrJHpDq2B8rYCzb0m3lOY9MXPrEqXtji81xuEKEW6a44s9/BKHY2N5kRxWbC4tVa9OlE=",
       "x-amz-request-id",
-      "202BF3E61401EC40",
+      "F74B7D47034593BF",
       "Date",
-      "Mon, 11 Dec 2017 03:50:47 GMT",
+      "Mon, 11 Dec 2017 04:19:20 GMT",
       "Last-Modified",
       "Mon, 04 Dec 2017 06:48:53 GMT",
       "ETag",
@@ -315,77 +386,6 @@
       "binary/octet-stream",
       "Content-Length",
       "1120",
-      "Server",
-      "AmazonS3",
-      "Connection",
-      "close"
-    ]
-  },
-  {
-    "scope": "http://iglu.data.e2e.realestate.com.au:80",
-    "method": "GET",
-    "path": "/schemas/au.com.realestate/user/jsonschema/1-0-0",
-    "body": "",
-    "status": 200,
-    "response": {
-      "$schema": "http://iglucentral.com/schemas/com.snowplowanalytics.self-desc/schema/jsonschema/1-0-0#",
-      "description": "Schema for user",
-      "self": {
-        "vendor": "au.com.realestate",
-        "name": "user",
-        "format": "jsonschema",
-        "version": "1-0-0"
-      },
-      "type": "object",
-      "properties": {
-        "user_login_status": {
-          "type": "string",
-          "description": "Whether a the user is logged in or not",
-          "enum": [
-            "logged in",
-            "logged_out",
-            "not logged in"
-          ]
-        },
-        "my_rea_id": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "description": "ID for each visitor who is logged in on My Rea"
-        },
-        "my_rea_anon_id": {
-          "type": [
-            "string",
-            "null"
-          ],
-          "description": "ID for each visitor irrespective of whether they have a MyREA login"
-        },
-        "reauid": {
-          "type": "string",
-          "description": "New unique ID for all visitors"
-        }
-      },
-      "required": [
-        "user_login_status"
-      ],
-      "additionalProperties": false
-    },
-    "rawHeaders": [
-      "x-amz-id-2",
-      "xo8tukf7ERAk4vFb7J+KFu9whbfN/9PjPmmHKMdlNzrGonQ6Yj/ioI2nEwNK+Kh+HjNeeQ+EeJU=",
-      "x-amz-request-id",
-      "E5D381C7A5D494C3",
-      "Date",
-      "Mon, 11 Dec 2017 03:50:47 GMT",
-      "Last-Modified",
-      "Mon, 04 Dec 2017 06:48:53 GMT",
-      "ETag",
-      "\"592a291d696e472b7dd853697872b034\"",
-      "Content-Type",
-      "binary/octet-stream",
-      "Content-Length",
-      "950",
       "Server",
       "AmazonS3",
       "Connection",
@@ -427,11 +427,11 @@
     },
     "rawHeaders": [
       "x-amz-id-2",
-      "qTiln8CkP4NqfFGK61c6l9qDSYvSKfiL7c133m2xUgYu17HDrFXdSmXW8Wmp1+/nWLqcSak3OCY=",
+      "RKHbILC/qbd4eMRopFWlQkxwn4fSe/5mc9+gF4gzRr0jrDJue92v+tWVkoM4r7JrGPhz0iPE6q0=",
       "x-amz-request-id",
-      "071D79E9AAEB59A8",
+      "0943EB9148267E66",
       "Date",
-      "Mon, 11 Dec 2017 03:50:47 GMT",
+      "Mon, 11 Dec 2017 04:19:20 GMT",
       "Last-Modified",
       "Fri, 27 Oct 2017 11:23:45 GMT",
       "ETag",

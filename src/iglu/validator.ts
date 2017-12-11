@@ -19,8 +19,9 @@ export const metaSchemaCheck = (json: AnyJson): Either<JsonMessage, IgluSchema> 
 	return conformsToSchema(metaSchemaFile, json).map(a => a as IgluSchema) as Either<JsonMessage, IgluSchema>;
 };
 
-export const validateIgluResolverSchema = (json: AnyJson): TaskEither<JsonMessage, string> => {
-	return validateIgluData(json, metaResolverConfig)
+export const validateIgluResolverSchema = (json: AnyJson): TaskEither<JsonMessage, IgluResolverSchema> => {
+	const igluJson = json as IgluResolverSchema;
+	return validateIgluData(json, metaResolverConfig).map(_ => igluJson)
 };
 
 export const validateIgluData = (json: AnyJson, resolverConfig: IgluResolverSchema): TaskEither<JsonMessage, string> => {
