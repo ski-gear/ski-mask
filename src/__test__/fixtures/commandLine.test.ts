@@ -2,10 +2,9 @@ import { expect } from 'chai';
 import 'mocha';
 
 import * as CliTest from "command-line-test";
-import { AnyJson } from '../../json';
 import { prop, path as rPath } from "ramda";
 import * as path from 'path';
-import { JsonMessage } from '../../types/Types';
+import { JsonMessage, AnyJson } from '../../types/Types';
 
 interface CliResponse {
 	error: null | string;

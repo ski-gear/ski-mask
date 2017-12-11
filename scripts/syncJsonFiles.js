@@ -2,7 +2,7 @@ import syncy from 'syncy';
 
 const sync = () => {
   process.chdir('./src');
-  syncy(['./iglu/schemas/**/*.json'], '../dist/', { ignoreInDest: '**/*.js' })
+  syncy(['./iglu/schemas/**/*.json', './iglu/*.json'], '../dist/', { ignoreInDest: '**/*.js' })
     .then(() => {
       console.log('Synced JSON files!');
     })
