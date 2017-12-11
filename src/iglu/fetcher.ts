@@ -1,13 +1,13 @@
-import { liftA2 } from 'fp-ts/lib/Apply';
-import { Either, either, left, right } from 'fp-ts/lib/Either';
-import { compose, curry } from 'fp-ts/lib/function';
-import { fromEither, TaskEither, tryCatch } from 'fp-ts/lib/TaskEither';
-import { contains, find, pathOr } from 'ramda';
-import * as request from 'request-promise-native';
-import * as url from 'url';
+import { liftA2 } from "fp-ts/lib/Apply";
+import { Either, either, left, right } from "fp-ts/lib/Either";
+import { compose, curry } from "fp-ts/lib/function";
+import { fromEither, TaskEither, tryCatch } from "fp-ts/lib/TaskEither";
+import { contains, find, pathOr } from "ramda";
+import * as request from "request-promise-native";
+import * as url from "url";
 
-import { parseJson } from '../json';
-import { IgluJsonPayload, Repository, IgluResolverSchema, SchemaAddress, SchemaData, IgluSchema, JsonMessage } from '../types/Types';
+import { parseJson } from "../json";
+import { IgluJsonPayload, IgluResolverSchema, IgluSchema, JsonMessage, Repository, SchemaAddress, SchemaData } from "../types/Types";
 
 type SchemaUrl = string;
 type RepoUrl = string;
@@ -18,11 +18,11 @@ export const fetchSchema = (igluSchemaUrl: string, resolverConfig: IgluResolverS
 	const schemaUrl = liftA2(either)(assembleSchemaUrl)(schemaAddress)(endPoint);
 	return fromEither(schemaUrl)
 		.chain(fetch)
-		.chain(parsedAndValidatedJsonFromFetched)
+		.chain(parsedAndValidatedJsonFromFetched);
 };
 
 const parsedAndValidatedJsonFromFetched = (fetched: string): TaskEither<JsonMessage, IgluSchema> => {
-	const parsed = parseJson(fetched).map(a => a as IgluSchema);
+	const parsed = parseJson(fetched).map((a) => a as IgluSchema);
 	return fromEither(parsed);
 };
 
@@ -49,7 +49,7 @@ const readSchemaAddress = (address: string): Either<JsonMessage, SchemaAddress> 
 				success: false,
 				message: "Iglu Schema regex match failed for address",
 				context: JSON.stringify(address),
-			}
+			},
 		);
 	}
 };
@@ -58,9 +58,9 @@ const extractEndpoint = (resolverConfig: IgluResolverSchema, schemaAddress: Sche
 	const data = resolverConfig.data as SchemaData;
 	const repo = find(
 		(r: Repository): boolean => {
-			return contains(schemaAddress.vendor, pathOr('', ['vendorPrefixes'], r));
+			return contains(schemaAddress.vendor, pathOr("", ["vendorPrefixes"], r));
 		},
-		pathOr([], ['repositories'], data),
+		pathOr([], ["repositories"], data),
 	);
 
 	if (repo) {
@@ -87,4 +87,4 @@ const fetch = (urlString: string): TaskEither<JsonMessage, string> => {
 			};
 		},
 	);
-}
+};

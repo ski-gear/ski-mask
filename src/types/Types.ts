@@ -8,7 +8,7 @@ export interface JsonMessage {
   context?: string;
 }
 
-export type IgluSchema = {
+export interface IgluSchema {
 	$schema: string;
 	description: string;
 	self: {
@@ -16,18 +16,18 @@ export type IgluSchema = {
 		name: string;
 		format: string;
 		version: string;
-	}
-};
+	};
+}
 
 export type IgluJsonPayload = AnyJson & {
 	schema: string;
 	data: AnyJson;
-}
+};
 
 export type IgluResolverSchema = IgluJsonPayload & {
 	schema: string;
 	data: SchemaData;
-}
+};
 
 export interface Http {
 	uri: string;
