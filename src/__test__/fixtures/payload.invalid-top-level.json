@@ -1,0 +1,10 @@
+{
+    "schema": "iglu:com.snowplowanalytics.snowplow/unstruct_event/jsonschema/1-0-0",
+    "dataa": {
+        "schema": "iglu:com.snowplowanalytics.snowplow/link_click/jsonschema/1-0-0",
+        "data": {
+            "targetUrl": "https://myawesomeurl.com/data",
+            "elementId": "bestElementEver"
+        }
+    }
+}

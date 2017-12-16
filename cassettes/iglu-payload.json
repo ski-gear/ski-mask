@@ -2,6 +2,56 @@
   {
     "scope": "http://iglu.data.e2e.realestate.com.au:80",
     "method": "GET",
+    "path": "/schemas/au.com.realestate/adobe_events/jsonschema/1-0-0",
+    "body": "",
+    "status": 200,
+    "response": {
+      "$schema": "http://iglucentral.com/schemas/com.snowplowanalytics.self-desc/schema/jsonschema/1-0-0#",
+      "description": "Schema for adobe_events",
+      "self": {
+        "vendor": "au.com.realestate",
+        "name": "adobe_events",
+        "format": "jsonschema",
+        "version": "1-0-0"
+      },
+      "type": "object",
+      "properties": {
+        "event_name": {
+          "type": "string"
+        },
+        "event_serial": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "event_name"
+      ],
+      "additionalProperties": false
+    },
+    "rawHeaders": [
+      "x-amz-id-2",
+      "7NIRvaiFzsBGraBy4rLZigrdVZXNx5qN5kjKdCusxGsT32hr5IOG5EywaFjRW2vjQdnM3aAZm2Y=",
+      "x-amz-request-id",
+      "F817B4DDB6582024",
+      "Date",
+      "Sat, 16 Dec 2017 02:59:43 GMT",
+      "Last-Modified",
+      "Fri, 15 Dec 2017 03:46:45 GMT",
+      "ETag",
+      "\"0ce0be62173de0f55e762bb914a21b49\"",
+      "Content-Type",
+      "binary/octet-stream",
+      "Content-Length",
+      "489",
+      "Server",
+      "AmazonS3",
+      "Connection",
+      "close"
+    ]
+  },
+  {
+    "scope": "http://iglu.data.e2e.realestate.com.au:80",
+    "method": "GET",
     "path": "/schemas/au.com.realestate/user/jsonschema/1-0-0",
     "body": "",
     "status": 200,
@@ -51,109 +101,19 @@
     },
     "rawHeaders": [
       "x-amz-id-2",
-      "opd20Uw0EXn5hRXVzDqg2NL4Gonko/MZF6a6XLnoWLmJDdofjA4bNLfwDU0s5qFVfkjmIj5sl/A=",
+      "SCviMXKQ2mvWfQErkZtKadGSYhKDJSez0dKDizjEb3Uf6oiAtA1C6bZIt47f+x3FKrRTnSCz36Y=",
       "x-amz-request-id",
-      "1A4CA97CD08017B0",
+      "1AEA7473EAC7D389",
       "Date",
-      "Mon, 11 Dec 2017 04:19:20 GMT",
+      "Sat, 16 Dec 2017 02:59:43 GMT",
       "Last-Modified",
-      "Mon, 04 Dec 2017 06:48:53 GMT",
+      "Fri, 15 Dec 2017 03:46:45 GMT",
       "ETag",
       "\"592a291d696e472b7dd853697872b034\"",
       "Content-Type",
       "binary/octet-stream",
       "Content-Length",
       "950",
-      "Server",
-      "AmazonS3",
-      "Connection",
-      "close"
-    ]
-  },
-  {
-    "scope": "http://iglu.data.e2e.realestate.com.au:80",
-    "method": "GET",
-    "path": "/schemas/au.com.realestate/property/jsonschema/2-0-0",
-    "body": "",
-    "status": 200,
-    "response": {
-      "$schema": "http://iglucentral.com/schemas/com.snowplowanalytics.self-desc/schema/jsonschema/1-0-0#",
-      "description": "Schema for property",
-      "self": {
-        "vendor": "au.com.realestate",
-        "name": "property",
-        "format": "jsonschema",
-        "version": "2-0-0"
-      },
-      "type": "object",
-      "properties": {
-        "property_id": {
-          "type": "string",
-          "description": "Unique id of the property being listed"
-        },
-        "state": {
-          "type": "string",
-          "description": "State that property is located in"
-        },
-        "suburb": {
-          "type": "string",
-          "description": "Suburb that property is located in"
-        },
-        "postcode": {
-          "type": "string",
-          "description": "Postcode of property is located in"
-        },
-        "region": {
-          "type": "string",
-          "description": "Greater geographical region of the property"
-        },
-        "bedrooms": {
-          "type": "integer",
-          "description": "Number of bedrooms "
-        },
-        "bathrooms": {
-          "type": "integer",
-          "description": "Number of bathrooms"
-        },
-        "car_spaces": {
-          "type": "integer",
-          "description": "Number of car spaces"
-        },
-        "year_built": {
-          "type": "integer",
-          "description": "Year that the property was built"
-        },
-        "property_type": {
-          "type": "string",
-          "description": "Type of property",
-          "enum": [
-            "house",
-            "unit",
-            "land",
-            "villa"
-          ]
-        }
-      },
-      "required": [
-        "property_id"
-      ],
-      "additionalProperties": false
-    },
-    "rawHeaders": [
-      "x-amz-id-2",
-      "3Xe96QMgjzeLPEkGUxfO7ynC4SaXhouc8mCpCYYvfWgPmyUbBbukLWyA5bB5iTrM5dgEvw567Fw=",
-      "x-amz-request-id",
-      "C85CDB78A29F7F37",
-      "Date",
-      "Mon, 11 Dec 2017 04:19:20 GMT",
-      "Last-Modified",
-      "Mon, 04 Dec 2017 06:48:53 GMT",
-      "ETag",
-      "\"2e58673b158385740d1c03a073923db4\"",
-      "Content-Type",
-      "binary/octet-stream",
-      "Content-Length",
-      "1476",
       "Server",
       "AmazonS3",
       "Connection",
@@ -244,69 +204,19 @@
     },
     "rawHeaders": [
       "x-amz-id-2",
-      "Ndphz4raK5hd+i3+Z5Vjclju7quHhb5KOEV4EYCPcXEbhfq8O6Vp+id/u7lmNl+5bCqb/xJXEjg=",
+      "wNmdKInxxOowh7x7J6uks7pw/SjnlDuRjDuggOFBs5G1Rw29dxJA2D/Y9A/UuVSgluESH/8Mwno=",
       "x-amz-request-id",
-      "F14C8101D1ADBC04",
+      "1F50E346196FCA69",
       "Date",
-      "Mon, 11 Dec 2017 04:19:20 GMT",
+      "Sat, 16 Dec 2017 02:59:43 GMT",
       "Last-Modified",
-      "Mon, 04 Dec 2017 06:48:53 GMT",
+      "Fri, 15 Dec 2017 03:46:45 GMT",
       "ETag",
       "\"77fdffc8ded300e3382db3326a4674d8\"",
       "Content-Type",
       "binary/octet-stream",
       "Content-Length",
       "1785",
-      "Server",
-      "AmazonS3",
-      "Connection",
-      "close"
-    ]
-  },
-  {
-    "scope": "http://iglu.data.e2e.realestate.com.au:80",
-    "method": "GET",
-    "path": "/schemas/au.com.realestate/adobe_events/jsonschema/1-0-0",
-    "body": "",
-    "status": 200,
-    "response": {
-      "$schema": "http://iglucentral.com/schemas/com.snowplowanalytics.self-desc/schema/jsonschema/1-0-0#",
-      "description": "Schema for adobe_events",
-      "self": {
-        "vendor": "au.com.realestate",
-        "name": "adobe_events",
-        "format": "jsonschema",
-        "version": "1-0-0"
-      },
-      "type": "object",
-      "properties": {
-        "event_name": {
-          "type": "string"
-        },
-        "event_serial": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "event_name"
-      ],
-      "additionalProperties": false
-    },
-    "rawHeaders": [
-      "x-amz-id-2",
-      "O1uGtoKN+WEZF3NYb0IgDkTS1XS93y61gknJebL6hIw0JlzcNdL6Pf7KJWcq5/nIOkidm7vAt4M=",
-      "x-amz-request-id",
-      "C93A070A75E87E62",
-      "Date",
-      "Mon, 11 Dec 2017 04:19:20 GMT",
-      "Last-Modified",
-      "Mon, 04 Dec 2017 06:48:53 GMT",
-      "ETag",
-      "\"0ce0be62173de0f55e762bb914a21b49\"",
-      "Content-Type",
-      "binary/octet-stream",
-      "Content-Length",
-      "489",
       "Server",
       "AmazonS3",
       "Connection",
@@ -373,19 +283,109 @@
     },
     "rawHeaders": [
       "x-amz-id-2",
-      "ZbAAKanYrJHpDq2B8rYCzb0m3lOY9MXPrEqXtji81xuEKEW6a44s9/BKHY2N5kRxWbC4tVa9OlE=",
+      "PALnhYyfb29rcduz0wtm1p4suQXYBMIEPdTDThOTDDyWsRoB8P7JG7K2RH/3tMh/7mefCepFxWY=",
       "x-amz-request-id",
-      "F74B7D47034593BF",
+      "9820FB53617F0448",
       "Date",
-      "Mon, 11 Dec 2017 04:19:20 GMT",
+      "Sat, 16 Dec 2017 02:59:43 GMT",
       "Last-Modified",
-      "Mon, 04 Dec 2017 06:48:53 GMT",
+      "Fri, 15 Dec 2017 03:46:45 GMT",
       "ETag",
       "\"0ef0911f1267ef8932cf3d7244b88030\"",
       "Content-Type",
       "binary/octet-stream",
       "Content-Length",
       "1120",
+      "Server",
+      "AmazonS3",
+      "Connection",
+      "close"
+    ]
+  },
+  {
+    "scope": "http://iglu.data.e2e.realestate.com.au:80",
+    "method": "GET",
+    "path": "/schemas/au.com.realestate/property/jsonschema/2-0-0",
+    "body": "",
+    "status": 200,
+    "response": {
+      "$schema": "http://iglucentral.com/schemas/com.snowplowanalytics.self-desc/schema/jsonschema/1-0-0#",
+      "description": "Schema for property",
+      "self": {
+        "vendor": "au.com.realestate",
+        "name": "property",
+        "format": "jsonschema",
+        "version": "2-0-0"
+      },
+      "type": "object",
+      "properties": {
+        "property_id": {
+          "type": "string",
+          "description": "Unique id of the property being listed"
+        },
+        "state": {
+          "type": "string",
+          "description": "State that property is located in"
+        },
+        "suburb": {
+          "type": "string",
+          "description": "Suburb that property is located in"
+        },
+        "postcode": {
+          "type": "string",
+          "description": "Postcode of property is located in"
+        },
+        "region": {
+          "type": "string",
+          "description": "Greater geographical region of the property"
+        },
+        "bedrooms": {
+          "type": "integer",
+          "description": "Number of bedrooms "
+        },
+        "bathrooms": {
+          "type": "integer",
+          "description": "Number of bathrooms"
+        },
+        "car_spaces": {
+          "type": "integer",
+          "description": "Number of car spaces"
+        },
+        "year_built": {
+          "type": "integer",
+          "description": "Year that the property was built"
+        },
+        "property_type": {
+          "type": "string",
+          "description": "Type of property",
+          "enum": [
+            "house",
+            "unit",
+            "land",
+            "villa"
+          ]
+        }
+      },
+      "required": [
+        "property_id"
+      ],
+      "additionalProperties": false
+    },
+    "rawHeaders": [
+      "x-amz-id-2",
+      "dzOVw8XZULtkTlFke/wwYTw8rnSJqFcjHHgl5txkCzYjbASNHuuMesBipwOBG6R7uIdo3GDAubY=",
+      "x-amz-request-id",
+      "679B88CB612FF3DA",
+      "Date",
+      "Sat, 16 Dec 2017 02:59:43 GMT",
+      "Last-Modified",
+      "Fri, 15 Dec 2017 03:46:45 GMT",
+      "ETag",
+      "\"2e58673b158385740d1c03a073923db4\"",
+      "Content-Type",
+      "binary/octet-stream",
+      "Content-Length",
+      "1476",
       "Server",
       "AmazonS3",
       "Connection",
@@ -427,13 +427,13 @@
     },
     "rawHeaders": [
       "x-amz-id-2",
-      "RKHbILC/qbd4eMRopFWlQkxwn4fSe/5mc9+gF4gzRr0jrDJue92v+tWVkoM4r7JrGPhz0iPE6q0=",
+      "fgV9WJQvjXftCRaGeabjk5jFZSgh2vHmZLX0VFn2vtD9Pd+/GYI7r72w/yPKkRyyPGZqMU20qpU=",
       "x-amz-request-id",
-      "0943EB9148267E66",
+      "EADEED8D430F622E",
       "Date",
-      "Mon, 11 Dec 2017 04:19:20 GMT",
+      "Sat, 16 Dec 2017 02:59:43 GMT",
       "Last-Modified",
-      "Fri, 27 Oct 2017 11:23:45 GMT",
+      "Wed, 13 Dec 2017 13:58:34 GMT",
       "ETag",
       "\"2a07ca78a021aaf603ae30068ff3764d\"",
       "Content-Type",

@@ -21,8 +21,8 @@ type SchemaUrl = string;
 type RepoUrl = string;
 
 export const fetchSchema = (
-  igluSchemaUrl: string,
   resolverConfig: IgluResolverSchema,
+  igluSchemaUrl: string,
 ): TaskEither<JsonMessage, IgluSchema> => {
   const schemaAddress = readSchemaAddress(igluSchemaUrl);
   const endPoint = schemaAddress.chain(curry(extractEndpoint)(resolverConfig));
