@@ -38,10 +38,12 @@
   },
   "dependencies": {
     "@types/ajv": "^1.0.0",
+    "@types/nock": "^9.1.0",
     "ajv": "^5.5.1",
     "commander": "^2.12.2",
     "fp-ts": "^0.6.4",
     "jsome": "^2.3.26",
+    "nock": "^9.1.4",
     "ramda": "^0.25.0",
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5"

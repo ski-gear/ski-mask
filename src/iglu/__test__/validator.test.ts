@@ -9,8 +9,16 @@ import { readFile } from "../../file";
 import { parseJson } from "../../json";
 import { validateIgluData, validateIgluResolverSchema } from "../validator";
 import { IgluResolverSchema, AnyJson, JsonMessage } from "../../types/Types";
+import TestRecorder from "../../TestRecorder";
+
+
+const fixturesDir = path.join(__dirname, 'fixtures', 'recorded');
+const recorder = TestRecorder("validator", { fixturesDir });
 
 describe("Iglu/Validator", () => {
+	before(recorder.before)
+	after(recorder.after);
+
 	describe("validateIgluData", () => {
 		describe("with a valid payload", () => {
 			it("returns a success", () => {

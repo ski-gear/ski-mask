@@ -9,43 +9,49 @@ import { path as rPath, prop } from "ramda";
 import { AnyJson } from "../types/Types";
 import { PathLike } from "fs";
 import { getJsonFromFile } from "./test.helpers";
+import TestRecorder from '../TestRecorder';
 
 chai.use(ChaiAsPromised);
+const fixturesDir = path.join(__dirname, 'fixtures', 'recorded');
+const recorder = TestRecorder("index", { fixturesDir });
 
 describe("Index", () => {
-  describe("validate", () => {
-    describe("with valid json data", () => {
-      it("returns a resolved promise with a success message", async () => {
-        const jsonFile = getJsonFromFile(path.join(__dirname, "fixtures", "payload.json"));
+	before(recorder.before)
+	after(recorder.after);
 
-        const resolverConfigFile = getJsonFromFile(path.join(__dirname, "fixtures", "resolver.json"));
+	describe("validate", () => {
+		describe("with valid json data", () => {
+			it("returns a resolved promise with a success message", async () => {
+				const jsonFile = getJsonFromFile(path.join(__dirname, "fixtures", "payload.json"));
 
-        const validation = await validate(jsonFile, resolverConfigFile);
-        expect(validation.success).to.be.true;
-        expect(validation.message).to.match(/All Valid/);
-      });
-    });
+				const resolverConfigFile = getJsonFromFile(path.join(__dirname, "fixtures", "resolver.json"));
 
-    describe("with invalid json data", () => {
-      it("returns a rejected promise with an appropriate message", () => {
-        const jsonFile = getJsonFromFile(path.join(__dirname, "fixtures", "payload.bad.json"));
+				const validation = await validate(jsonFile, resolverConfigFile);
+				expect(validation.success).to.be.true;
+				expect(validation.message).to.match(/All Valid/);
+			});
+		});
 
-        const resolverConfigFile = getJsonFromFile(path.join(__dirname, "fixtures", "resolver.json"));
+		describe("with invalid json data", () => {
+			it("returns a rejected promise with an appropriate message", () => {
+				const jsonFile = getJsonFromFile(path.join(__dirname, "fixtures", "payload.bad.json"));
 
-        const validation = validate(jsonFile, resolverConfigFile);
-        return expect(validation).to.eventually.be.rejectedWith(/JSON schema validation failed/);
-      });
-    });
+				const resolverConfigFile = getJsonFromFile(path.join(__dirname, "fixtures", "resolver.json"));
 
-    describe("with valid json data but with top level schema messed up", () => {
-      it("returns a rejected promise with an appropriate message", () => {
-        const jsonFile = getJsonFromFile(path.join(__dirname, "fixtures", "payload.bad.json"));
+				const validation = validate(jsonFile, resolverConfigFile);
+				return expect(validation).to.eventually.be.rejectedWith(/JSON schema validation failed/);
+			});
+		});
 
-        const resolverConfigFile = getJsonFromFile(path.join(__dirname, "fixtures", "resolver.json"));
+		describe("with valid json data but with top level schema messed up", () => {
+			it("returns a rejected promise with an appropriate message", () => {
+				const jsonFile = getJsonFromFile(path.join(__dirname, "fixtures", "payload.bad.json"));
 
-        const validation = validate(jsonFile, resolverConfigFile);
-        return expect(validation).to.eventually.be.rejectedWith(/JSON schema validation failed/);
-      });
-    });
-  });
+				const resolverConfigFile = getJsonFromFile(path.join(__dirname, "fixtures", "resolver.json"));
+
+				const validation = validate(jsonFile, resolverConfigFile);
+				return expect(validation).to.eventually.be.rejectedWith(/JSON schema validation failed/);
+			});
+		});
+	});
 });

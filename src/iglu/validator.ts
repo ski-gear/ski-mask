@@ -11,7 +11,7 @@ import {
   taskEither,
 } from "fp-ts/lib/TaskEither";
 import { sequence } from "fp-ts/lib/Traversable";
-import { append, dissoc, map, mapObjIndexed, prop, reduce, type } from "ramda";
+import { dissoc, map, mapObjIndexed, prop, reduce, type } from "ramda";
 import { validateSchema } from "../json";
 import { readResolverConfig } from "../resolver";
 import {

@@ -7,11 +7,18 @@ import { path as rPath } from "ramda";
 import { fetchSchema } from "../fetcher";
 import { getJsonFromFile } from "../../__test__/test.helpers";
 import { IgluResolverSchema } from "../../types/Types";
+import TestRecorder from "../../TestRecorder";
+
+const fixturesDir = path.join(__dirname, 'fixtures', 'recorded');
+const recorder = TestRecorder("fetcher", { fixturesDir });
 
 const resolverFilePath = path.join(__dirname, "fixtures", "resolver.json");
 const incorrectResolverFilePath = path.join(__dirname, "fixtures", "resolver.incorrect.json");
 
 describe("Iglu/fetcher", () => {
+  before(recorder.before)
+  after(recorder.after);
+
   describe("fetchSchema", () => {
     describe("with a valid schema URL and valid resolver config", () => {
       it("returns a right", () => {
