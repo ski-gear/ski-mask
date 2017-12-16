@@ -4,7 +4,7 @@ import 'mocha';
 import * as CliTest from "command-line-test";
 import { prop, path as rPath } from "ramda";
 import * as path from 'path';
-import { JsonMessage, AnyJson } from '../../types/Types';
+import { JsonMessage, AnyJson } from '../types/Types';
 
 interface CliResponse {
 	error: null | string;

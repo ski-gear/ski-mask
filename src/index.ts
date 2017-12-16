@@ -8,7 +8,6 @@ import { validateIgluData, validateIgluResolverSchema } from "./iglu/validator";
 
 import { either } from "fp-ts/lib/Either";
 import { readFile } from "./file";
-import { fetchSchema } from "./iglu/fetcher";
 import { parseJson, validateSchema } from "./json";
 import { readResolverConfigFromFile } from "./resolver";
 import { AnyJson, IgluResolverSchema, JsonMessage } from "./types/Types";
