@@ -53,11 +53,6 @@ export const validateIgluData = (
   return flatten(taskEither)(sequencedChecks).map((_) => "✓ Valid Payload");
 };
 
-const dummyJsonMessage: JsonMessage = {
-  message: "Dummy",
-  success: false,
-};
-
 const conformsToSchema = (
   schema: IgluSchema,
   json: AnyJson,

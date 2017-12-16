@@ -29,7 +29,7 @@ export const validateSchema = (json: AnyJson, schema: AnyJson): Either<JsonMessa
     } else {
       const errorMessage: JsonMessage = {
         context: getErrorMessages(validate.errors as ajv.ErrorObject[]),
-        message: `JSON schema validation failed for ${JSON.stringify(json)}`,
+        message: `JSON schema validation failed.`,
         success: false,
       };
       return left(errorMessage);
@@ -50,6 +50,7 @@ const getValidator = (): Ajv => {
       errorDataPath: "property",
       unknownFormats: ["strict-uri"],
       validateSchema: false,
+      verbose: true
     },
   );
   v.addMetaSchema(require("ajv/lib/refs/json-schema-draft-04.json"), "draft4");
@@ -60,8 +61,10 @@ const getErrorMessages = (errors: ajv.ErrorObject[]): string => {
   const messages = map(
     (e) => {
       const msg = propOr("No Error", "message", e);
-      const dataPath = propOr("stuff", "schemaPath", e);
-      return join(": ", [msg, dataPath]);
+      const dataPath = propOr("Unknown Path", "schemaPath", e);
+      const schema = propOr("Unknown Path", "schema", e);
+      const data = propOr("Unknown Object", "data", e);
+      return `Path: ${dataPath} ${schema} ${msg}, in data: ${JSON.stringify(data, null, 4)}`;
     },
     errors,
   ) as string[];
