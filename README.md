@@ -101,7 +101,6 @@ const skiMask = require("ski-mask");
 const payload = {
   schema: "iglu:com.snowplowanalytics.snowplow/unstruct_event/jsonschema/1-0-0",
   data: {
-    event_name: "link_click",
     schema: "iglu:com.snowplowanalytics.snowplow/link_click/jsonschema/1-0-0",
     data: {
       targetUrl: "https://myawesomeurl.com/data",
